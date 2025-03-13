@@ -1,29 +1,63 @@
-// Importo react-router
-import { Link } from "react-router-dom"
+// Axios
+import axios from "axios"
+
+// UseState e useEffect
+import { useState, useEffect } from "react"
+
+// Importo Link react-router
+// useParams
+import { Link, useParams } from "react-router-dom"
 
 import Reviews from "../components/Reviews"
 
 const MoviePage = () => {
+
+    // Recuperiamo l'id grazie as useParams
+    const { id } = useParams();
+
+    // Settiamo lo stato del componente prendendo il singolo elemento (oggetto)
+    const [movie, setMovie] = useState({})
+
+    // Chiamata Api + id
+    const getMovieData = () => {
+        axios.get("http://localhost:3000/api/movies/" + id)
+            .then(
+                res => {
+                    // Cambia lo stato
+                    setMovie(res.data)
+                }
+            )
+            .catch(err => console.log(err))
+    }
+
+    // Al rendering faccio partire la richiesta dati
+    useEffect(getMovieData, [])
+
+    // Funzione di rendering Reviews
+    const renderReviews = () => {
+        return movie.reviews?.map(
+            review => <Reviews key={review.id} propReviews={review} />
+        )
+    }
+
     return (
         <>
-            <section id="movie" className="border-bottom border-1 d-flex mb-3">
+            <section id="movie" className="border-bottom border-1 d-flex mb-3 h-75">
                 <div className="d-flex mb-3">
-                    <img src="http://localhost:3000/movies_cover/inception.jpg" class="movie-img" alt="..." />
+                    <img src={movie.image} class="movie-img img-thumbnail" alt={movie.title} />
                 </div>
                 <div className="text p-4 ">
-                    <h1>Titolo</h1>
+                    <h1>{movie.title}</h1>
                     <h3 className="text-muted">
-                        <i>By </i>
+                        <i>By {movie.director}</i>
                     </h3>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                    <p>{movie.abstract}</p>
                 </div>
             </section>
 
             <section id="reviews" className="mb-4">
                 <h4>Reviews</h4>
-                <Reviews />
-                <Reviews />
-                <Reviews />
+                {renderReviews()}
             </section>
 
             <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
