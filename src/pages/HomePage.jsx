@@ -13,7 +13,7 @@ const HomePage = () => {
     const [movies, setMovies] = useState([])
 
     // Chiamata al DB
-    const getData = () => {
+    const getMoviesData = () => {
         axios.get("http://localhost:3000/api/movies/")
             .then(
                 res => {
@@ -25,7 +25,7 @@ const HomePage = () => {
     }
 
     // Al rendering faccio partire la richiesta dati
-    useEffect(getData, [])
+    useEffect(getMoviesData, [])
 
     // Rendering Function
     const renderMovies = () => {
@@ -42,9 +42,11 @@ const HomePage = () => {
 
     return (
         <>
+
             <h1 className="text-dark text-center">Bool Movie</h1>
 
             <div className="row row-cols-3 mt-4">
+
                 {renderMovies()}
             </div>
         </>
