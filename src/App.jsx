@@ -2,6 +2,8 @@
 import HomePage from './pages/HomePage';
 // MoviePage
 import MoviePage from './pages/MoviePage';
+// NotFoundPage
+import NotFoundPage from './pages/NotFoundPage';
 
 // Layout
 import DefaultLayout from '../layouts/DefaultLayout';
@@ -21,6 +23,7 @@ function App() {
 
           <Route index path='/' element={<HomePage />} />
           <Route path='/movies/:id' element={<MoviePage />} />
+          <Route path='*' element={<NotFoundPage />} />
 
         </Route>
       </Routes>
