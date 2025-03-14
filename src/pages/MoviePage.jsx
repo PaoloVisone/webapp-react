@@ -73,7 +73,7 @@ const MoviePage = () => {
             </section>
 
             <section>
-                <ReviewsForm />
+                <ReviewsForm movie_id={movie.id} realoadReviews={getMovieData} />
             </section>
 
             <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
