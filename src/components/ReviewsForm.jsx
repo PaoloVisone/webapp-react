@@ -1,7 +1,7 @@
 // use state
 import { useState } from "react"
 
-const ReviewsForm = () => {
+const ReviewsForm = ({ movie_id, realoadReviews }) => {
 
     const initialValue = { name: "", text: "", vote: 1 };
 
@@ -12,6 +12,26 @@ const ReviewsForm = () => {
     const setNewValue = (e) => {
         const { value, name } = e.target;
         setFormData({ ...formData, [name]: value });
+    }
+
+    // Url
+    const endpoint = `http://localhost:3000/api/movies/${movie_id}/reviews`;
+
+    // Funzione di gestione submit
+    const submitReview = (e) => {
+        e.preventDefault();
+
+        // Chimata Axios
+        axios.post(endpoint, formData, { headers: { 'Content-Type': 'application/json' } })
+            .then(
+                () => {
+                    setFormData(initialValue)
+                    realoadReviews()
+                }
+            )
+            .catch(err => console.log(err)
+            )
+
     }
 
 
