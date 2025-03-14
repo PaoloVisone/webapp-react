@@ -8,7 +8,11 @@ import { useState, useEffect } from "react"
 // useParams
 import { Link, useParams, useNavigate } from "react-router-dom"
 
+// Reviews
 import Reviews from "../components/Reviews"
+
+// Form
+import ReviewsForm from "../components/ReviewsForm"
 
 const MoviePage = () => {
 
@@ -66,6 +70,10 @@ const MoviePage = () => {
             <section id="reviews" className="mb-4">
                 <h4>Reviews</h4>
                 {renderReviews()}
+            </section>
+
+            <section>
+                <ReviewsForm />
             </section>
 
             <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
