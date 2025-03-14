@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
 
 // Importo Link react-router
 // useParams
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 
 import Reviews from "../components/Reviews"
 
@@ -14,6 +14,9 @@ const MoviePage = () => {
 
     // Recuperiamo l'id grazie as useParams
     const { id } = useParams();
+
+    // Redirect
+    const redirect = useNavigate()
 
     // Settiamo lo stato del componente prendendo il singolo elemento (oggetto)
     const [movie, setMovie] = useState({})
@@ -27,7 +30,12 @@ const MoviePage = () => {
                     setMovie(res.data)
                 }
             )
-            .catch(err => console.log(err))
+            // Se c'è un errore
+            .catch(err => {
+                console.log(err);
+                if (err.status === 404) redirect('/*')
+
+            })
     }
 
     // Al rendering faccio partire la richiesta dati
@@ -44,7 +52,7 @@ const MoviePage = () => {
         <>
             <section id="movie" className="border-bottom border-1 d-flex mb-3 h-75">
                 <div className="d-flex mb-3">
-                    <img src={movie.image} class="movie-img img-thumbnail" alt={movie.title} />
+                    <img src={movie.image} className="movie-img img-thumbnail" alt={movie.title} />
                 </div>
                 <div className="text p-4 ">
                     <h1>{movie.title}</h1>
