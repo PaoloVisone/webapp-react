@@ -3,17 +3,14 @@ import { Link } from "react-router-dom"
 const NotFoundPage = () => {
     return (
 
-        <section className="py-5">
-            <div className="d-flex justify-content-center align-items-center flex-column text-center w-100">
-                <div className="bg_img w-50">
-                </div>
-                <div>
-                    <p className="display-4">Looks Like You're Lost</p>
-                    <p>The page you are looking for not available...</p>
-                    <Link to="/" className="text-white text-decoration-none px-4 py-3 bg-success d-inline-block mt-2 rounded">
-                        Go to Home
-                    </Link>
-                </div>
+        <section className="container">
+            <div className="lost">
+                {/* Gif */}
+                <div className="tenor-gif-embed" data-postid="1288351512682894859" data-share-method="host" data-aspect-ratio="1.05769" data-width="30%"><a href="https://tenor.com/view/confused-gif-1288351512682894859">Confused Sticker</a>from <a href="https://tenor.com/search/confused-stickers">Confused Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+                <Link to="/" className="btn">
+                    Go to Home
+                </Link>
             </div>
         </section>
 

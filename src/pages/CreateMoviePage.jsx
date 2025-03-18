@@ -28,7 +28,7 @@ const CreateMoviePage = () => {
         else setMovieObject({ ...movieObject, [name]: value });
     }
 
-
+    // Gestione del submit
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -45,44 +45,34 @@ const CreateMoviePage = () => {
 
     return (
 
-        <form class="was-validated" onSubmit={handleSubmit}>
-            <h1>Create new movie</h1>
-            <div class="md-3">
-                <label for="validationServer01" class="form-label">Title</label>
+        <form className="form-movie" onSubmit={handleSubmit}>
+            <h1 className="title-form">Create new movie</h1>
+            <div className="body-form">
+                <label>Title</label>
                 <input
                     type="text"
-                    class="form-control is-valid"
+                    className="form-control is-valid"
                     id="validationServer01"
                     placeholder="Title"
                     name="title"
                     value={movieObject.title}
                     onChange={setNewValue}
                     required />
-                <div class="invalid-feedback">
-                    Please enter a title.
-                </div>
-            </div>
 
-            <div class="md-3">
-                <label for="validationServer01" class="form-label">Director</label>
+                <label>Director</label>
                 <input
                     type="text"
-                    class="form-control is-valid"
+                    className="form-control is-valid"
                     id="validationServer01"
                     placeholder="Director"
                     name="director"
                     value={movieObject.director}
                     onChange={setNewValue}
                     required />
-                <div class="invalid-feedback">
-                    Please enter a name director.
-                </div>
-            </div>
 
-            <div class="mb-3">
-                <label for="validationTextarea" class="form-label">Description</label>
+                <label>Description</label>
                 <textarea
-                    class="form-control"
+                    className="form-control"
                     id="validationTextarea"
                     placeholder="Description..."
                     name="abstract"
@@ -90,24 +80,18 @@ const CreateMoviePage = () => {
                     onChange={setNewValue}
                     required>
                 </textarea>
-                <div class="invalid-feedback">
-                    Please enter a message in the textarea.
-                </div>
-            </div>
 
-            <div class="mb-3">
                 <input
                     type="file"
-                    class="form-control"
+                    className="form-control"
                     aria-label="file example"
                     name="image"
                     onChange={setNewValue}
                     required />
-                <div class="invalid-feedback">Example invalid form file feedback</div>
             </div>
 
-            <div class="mb-3">
-                <button class="btn btn-primary" type="submit" disabled>Add Movie</button>
+            <div className="box-button">
+                <button className="btn" type="submit" >Add Movie</button>
             </div>
         </form>
 

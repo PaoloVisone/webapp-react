@@ -54,31 +54,33 @@ const MoviePage = () => {
 
     return (
         <>
-            <section id="movie" className="border-bottom border-1 d-flex mb-3 h-75">
-                <div className="d-flex mb-3">
-                    <img src={movie.image} className="movie-img img-thumbnail" alt={movie.title} />
-                </div>
-                <div className="text p-4 ">
-                    <h1>{movie.title}</h1>
-                    <h3 className="text-muted">
-                        <i>By {movie.director}</i>
-                    </h3>
-                    <p>{movie.abstract}</p>
-                </div>
-            </section>
+            <div className="container">
+                <section id="movie">
+                    <div className="img-box">
+                        <img src={movie.image} className="movie-img" alt={movie.title} />
+                    </div>
+                    <div className="text">
+                        <h1>{movie.title}</h1>
+                        <h3 className="text-muted">
+                            <i>By {movie.director}</i>
+                        </h3>
+                        <p>{movie.abstract}</p>
+                    </div>
+                </section>
 
-            <section id="reviews" className="mb-4">
-                <h4>Reviews</h4>
-                {renderReviews()}
-            </section>
+                <section id="reviews">
+                    <h2>Reviews</h2>
+                    {renderReviews()}
+                </section>
 
-            <section>
-                <ReviewsForm movie_id={movie.id} realoadReviews={getMovieData} />
-            </section>
+                <section>
+                    <ReviewsForm movie_id={movie.id} realoadReviews={getMovieData} />
+                </section>
 
-            <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
-                <Link className="btn btn-secondary" to="/">Back to home</Link>
-            </footer>
+                <footer>
+                    <Link className="btn" to="/">Back to home</Link>
+                </footer>
+            </div>
         </>
 
     )
